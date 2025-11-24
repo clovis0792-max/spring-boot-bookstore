@@ -3,12 +3,12 @@
 #
 FROM maven:3.8.3-openjdk-21 AS build
 COPY . .
-RUN mvn clean install
+RUN mvn clean package -DskipTests
 
 #
 # Package stage
 #
-FROM eclipse-temurin:21-jdk
+FROM openjdk:21-jdk-slim
 COPY --from=build /target/bookStore-0.0.1-SNAPSHOT.jar demo.jar
 # ENV PORT=8080
 EXPOSE 8080
