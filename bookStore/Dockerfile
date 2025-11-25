@@ -40,7 +40,7 @@ RUN mvn clean package -DskipTests
 # Stage 2: Package and Run the application
 # Use a small JRE-only image for the final deployment
 # ------------------------------------
-FROM eclipse-temurin:21-jre-jammy  <-- THIS IS THE FIX
+FROM eclipse-temurin:21-jre-jammy 
 COPY --from=build /target/bookStore-0.0.1-SNAPSHOT.jar demo.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","demo.jar"]
